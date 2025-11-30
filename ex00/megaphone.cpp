@@ -1,9 +1,6 @@
 #include <iostream>
 #include <cctype>
 
-using std::cout;
-using std::endl;
-
 int main(int argc, char **argv)
 { 
     int k; 
@@ -11,17 +8,17 @@ int main(int argc, char **argv)
        
     if(argc == 1)
     {
-        cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << '\n'; 
+        std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << '\n'; 
         return 0;   
     }
     for(j = 1; argv[j]; j++)
     {
         for(k = 0; argv[j][k]; k++)
         {
-            cout << (char)std::toupper(argv[j][k]);
+            std::cout << (char)std::toupper(argv[j][k]);
         }
     }    
-    cout << '\n';
+    std::cout << '\n';
     return 0;
 
 } 
