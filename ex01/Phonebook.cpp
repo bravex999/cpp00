@@ -3,6 +3,22 @@
 #include <iomanip>
 #include <cctype>
 
+static bool hasAlnum(const std::string &s)
+{
+    std::size_t i;
+
+    if (s.empty())
+        return false;
+    i = 0;
+    while (i < s.size())
+    {
+        if (std::isalnum(static_cast<unsigned char>(s[i])))
+            return true;
+        i++;
+    }
+    return false;
+}
+
 static bool isAllDigits(const std::string &s)
 {
     std::size_t i = 0;
