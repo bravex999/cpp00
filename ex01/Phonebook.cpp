@@ -101,7 +101,6 @@ void Phonebook::add(void)
     }
     while (true)
     {
-        std::cout << "Enter darkest secret: ";
         if (!std::getline(std::cin, secret))
             return;
         if (hasAlnum(secret))
@@ -122,15 +121,15 @@ void Phonebook::add(void)
 
 void Phonebook::search(void)
 {
-    int         count;
+    int         n;
     int         i;
     std::string input;
 
     if (_index < 8)
-        count = _index;
+        n = _index;
     else
-        count = 8;    
-    if (count == 0)
+        n = 8;
+    if (n == 0)
     {
         std::cout << "Phonebook is empty.\n";
         return;
@@ -142,7 +141,7 @@ void Phonebook::search(void)
               << "|" << std::setw(10) << "Nickname" << "|\n";
     std::cout << "--------------------------------------------\n";
     i = 0;
-    while (i < count)
+    while (i < n)
     {
         std::cout << "|" << std::setw(10) << (i + 1)
                   << "|" << std::setw(10) << formatField(_contacts[i].getFirstName())
@@ -154,12 +153,12 @@ void Phonebook::search(void)
     std::cout << "--------------------------------------------\n";
     while (true)
     {
-        std::cout << "Select index (1-" << count << "): ";
+        std::cout << "Select index (1-" << n << "): ";
         if (!std::getline(std::cin, input))
             return;
         if (input.size() == 1 &&
             input[0] >= '1' &&
-            input[0] <= '0' + count)
+            input[0] <= '0' + n)
         {
             int idx = input[0] - '1';
             print(_contacts[idx]);
