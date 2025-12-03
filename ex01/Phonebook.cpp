@@ -101,6 +101,7 @@ void Phonebook::add(void)
     }
     while (true)
     {
+        std::cout << "Enter dark secret: ";
         if (!std::getline(std::cin, secret))
             return;
         if (hasAlnum(secret))
