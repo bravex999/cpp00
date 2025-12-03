@@ -12,11 +12,11 @@ static bool hasAlnum(const std::string &s)
     i = 0;
     while (i < s.size())
     {
-        if (std::isalnum(static_cast<unsigned char>(s[i])))
-            return true;
+        if (!std::isalnum(static_cast<unsigned char>(s[i])))
+            return false;
         i++;
     }
-    return false;
+    return true;
 }
 
 static bool isAllDigits(const std::string &s)
@@ -68,16 +68,16 @@ void Phonebook::add(void)
         std::cout << "Enter first name: ";
         if (!std::getline(std::cin, first))
             return;
-        if (!first.empty())
+        if (hasAlnum(first))
             break;
-        std::cout << "Field cannot be empty.\n";
+        std::cout << "Field must be an alphanumeric character\n";
     }
     while (true)
     {
         std::cout << "Enter last name: ";
         if (!std::getline(std::cin, last))
             return;
-        if (!last.empty())
+        if (hasAlnum(last))
             break;
         std::cout << "Field cannot be empty.\n";
     }
@@ -86,7 +86,7 @@ void Phonebook::add(void)
         std::cout << "Enter nickname: ";
         if (!std::getline(std::cin, nick))
             return;
-        if (!nick.empty())
+        if (hasAlnum(nick))
             break;
         std::cout << "Field cannot be empty.\n";
     }
@@ -104,7 +104,7 @@ void Phonebook::add(void)
         std::cout << "Enter darkest secret: ";
         if (!std::getline(std::cin, secret))
             return;
-        if (!secret.empty())
+        if (hasAlnum(secret))
             break;
         std::cout << "Field cannot be empty.\n";
     }
@@ -126,7 +126,10 @@ void Phonebook::search(void)
     int         i;
     std::string input;
 
-    count = (_index < 8) ? _index : 8;
+    if (_index < 8)
+        count = _index;
+    else
+        count = 8;    
     if (count == 0)
     {
         std::cout << "Phonebook is empty.\n";
