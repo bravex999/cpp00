@@ -79,7 +79,7 @@ void Phonebook::add(void)
             return;
         if (hasAlnum(last))
             break;
-        std::cout << "Field cannot be empty.\n";
+        std::cout << "Field must be an alphanumeric character\n";
     }
     while (true)
     {
@@ -88,7 +88,7 @@ void Phonebook::add(void)
             return;
         if (hasAlnum(nick))
             break;
-        std::cout << "Field cannot be empty.\n";
+        std::cout << "Field must be an alphanumeric character\n";
     }
     while (true)
     {
@@ -106,7 +106,7 @@ void Phonebook::add(void)
             return;
         if (hasAlnum(secret))
             break;
-        std::cout << "Field cannot be empty.\n";
+        std::cout << "Field must be an alphanumeric character\n";
     }
     pos = _index % 8;
     if (_index >= 8)
