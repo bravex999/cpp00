@@ -96,11 +96,20 @@ void Phonebook::add(void)
     std::string secret;
     int         pos;
 
-    while (true)
+    if (_index >= 8)
+	{
+		std::cout << "Warning: Memory is full. The oldest contact (index " 
+			      << (_index % 8) + 1 
+				  << ") will be overwritten if you proceed.\n";
+	}
+	while (true)
     {
         std::cout << "Enter first name: ";
         if (!std::getline(std::cin, first))
-            return;
+		{
+		    std::cout << std::endl;
+		    return;
+		}
         if (isAlphaOnly(first))
             break;
         std::cout << "Field must be an alpha. character\n";
@@ -109,7 +118,10 @@ void Phonebook::add(void)
     {
         std::cout << "Enter last name: ";
         if (!std::getline(std::cin, last))
-            return;
+        {
+			std::cout << std::endl;
+			return;
+		}
         if (isAlphaOnly(last))
             break;
         std::cout << "Field must be an alpha. character\n";
@@ -118,7 +130,10 @@ void Phonebook::add(void)
     {
         std::cout << "Enter nickname: ";
         if (!std::getline(std::cin, nick))
+		{
+			std::cout << std::endl;
             return;
+		}
         if (hasAlnum(nick))
             break;
         std::cout << "Field must be an alphanumeric character\n";
@@ -127,7 +142,10 @@ void Phonebook::add(void)
     {
         std::cout << "Enter phone number: ";
         if (!std::getline(std::cin, phone))
+		{
+			std::cout << std::endl;
             return;
+		}
         if (isAllDigits(phone))
             break;
         std::cout << "Phone number must be numeric and not empty.\n";
@@ -136,15 +154,18 @@ void Phonebook::add(void)
     {
         std::cout << "Enter dark secret: ";
         if (!std::getline(std::cin, secret))
+		{
+			std::cout << std::endl;
             return;
+		}
         if (specialForDark(secret))
             break;
         std::cout << "Field must be an alphanumeric character\n";
     }
     pos = _index % 8;
     if (_index >= 8)
-        std::cout << "Warning: overwriting oldest contact at slot "
-                  << (pos + 1) << "/8\n";
+        std::cout << "Contact at slot "
+                  << (pos + 1) << " has been successfully overwritten.\n";
     _contacts[pos].setFirstName(first);
     _contacts[pos].setLastName(last);
     _contacts[pos].setNickname(nick);
@@ -189,7 +210,11 @@ void Phonebook::search(void)
     {
         std::cout << "Select index (1-" << n << "): ";
         if (!std::getline(std::cin, input))
-            return;
+		{
+			std::cout << std::endl;
+			return;
+		}
+        
         if (input.size() == 1 &&
             input[0] >= '1' &&
             input[0] <= '0' + n)
