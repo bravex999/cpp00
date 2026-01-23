@@ -3,6 +3,39 @@
 #include <iomanip>
 #include <cctype>
 
+static bool isAlphaOnly(const std::string &s)
+{
+    std::size_t i;
+
+    if (s.empty())
+        return false;
+    i = 0;
+    while (i < s.size())
+    {
+        if (!std::isalpha(static_cast<unsigned char>(s[i])))
+            return false;
+        i++;
+    }
+    return true;
+}
+
+
+static bool specialForDark(const std::string &s)
+{
+    std::size_t i;
+
+    if (s.empty())
+        return false;
+    i = 0;
+    while (i < s.size())
+    {
+        if (!std::isalnum(static_cast<unsigned char>(s[i])) && s[i] != ' ')
+            return false;
+        i++;
+    }
+    return true;
+}
+
 static bool hasAlnum(const std::string &s)
 {
     std::size_t i;
@@ -68,18 +101,18 @@ void Phonebook::add(void)
         std::cout << "Enter first name: ";
         if (!std::getline(std::cin, first))
             return;
-        if (hasAlnum(first))
+        if (isAlphaOnly(first))
             break;
-        std::cout << "Field must be an alphanumeric character\n";
+        std::cout << "Field must be an alpha. character\n";
     }
     while (true)
     {
         std::cout << "Enter last name: ";
         if (!std::getline(std::cin, last))
             return;
-        if (hasAlnum(last))
+        if (isAlphaOnly(last))
             break;
-        std::cout << "Field must be an alphanumeric character\n";
+        std::cout << "Field must be an alpha. character\n";
     }
     while (true)
     {
@@ -104,7 +137,7 @@ void Phonebook::add(void)
         std::cout << "Enter dark secret: ";
         if (!std::getline(std::cin, secret))
             return;
-        if (hasAlnum(secret))
+        if (specialForDark(secret))
             break;
         std::cout << "Field must be an alphanumeric character\n";
     }
