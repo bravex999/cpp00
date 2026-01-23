@@ -1,4 +1,4 @@
-#include "Phonebook.hpp"
+#include "PhoneBook.hpp"
 #include <iostream>
 #include <iomanip>
 #include <cctype>
@@ -79,15 +79,15 @@ static std::string formatField(const std::string &s)
     return r;
 }
 
-Phonebook::Phonebook(void) : _index(0)
+PhoneBook::PhoneBook(void) : _index(0)
 {
 }
 
-Phonebook::~Phonebook(void)
+PhoneBook::~PhoneBook(void)
 {
 }
 
-void Phonebook::add(void)
+void PhoneBook::add(void)
 {
     std::string first;
     std::string last;
@@ -174,7 +174,7 @@ void Phonebook::add(void)
     _index++;
 }
 
-void Phonebook::search(void)
+void PhoneBook::search(void)
 {
     int         n;
     int         i;
@@ -227,7 +227,7 @@ void Phonebook::search(void)
     }
 }
 
-void Phonebook::print(const Contact &contact) const
+void PhoneBook::print(const Contact &contact) const
 {
     std::cout << "First name:   " << contact.getFirstName() << "\n";
     std::cout << "Last name:    " << contact.getLastName() << "\n";

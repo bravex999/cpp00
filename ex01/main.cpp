@@ -1,10 +1,10 @@
-#include "Phonebook.hpp"
+#include "PhoneBook.hpp"
 #include <iostream>
 #include <string>
 
 int main(void)
 {
-    Phonebook   phonebook;
+    PhoneBook   phonebook;
     std::string command;
 
     while (true)
